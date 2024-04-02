@@ -1,22 +1,21 @@
 function deckSort(deck) {
     const output = []
-
+    const n = deck.length;
     deck.sort((a, b) => {
-        return a - b;
+        return b - a;
     });
-    console.log("sorted deck", deck)
+    // console.log("sorted deck", deck)
     while (deck.length > 0) {
-
-        const removeTop = deck.shift()
-        output.push(removeTop);
-        console.log("deck after removal", deck)
-        if (deck.length > 0) {
-            deck.push(deck.shift())
-            console.log("check after move to back", deck)
+        if (output.length > 0) {
+            const bottomCard = output.pop();
+            output.unshift(bottomCard)
         }
+        const removeTop = deck.shift()
+        output.unshift(removeTop);
     }
     return output;
 }
 
 const deck = [17, 13, 11, 2, 3, 5, 7];
 console.log(deckSort(deck))
+
